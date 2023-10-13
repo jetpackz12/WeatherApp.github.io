@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project-weather-app</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://kit.fontawesome.com/d1e274a655.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="spinner">
+        <i class="fa fa-spinner fa-spin"></i><i class="loading"> Loading...</i>
+    </div>
+    <div class="blurrd">
+        <center>
+            <h1 id="app-title" style="width: 100%; color: white; padding: 10px; margin-bottom: 5px; background-color: var(--dark-blue);">Weather App</h1>
+        </center>
+        
+        <h2 class="section-titles">Current Weather:</h2>
+        <header class="header">
+            <div class="header-left">
+            <span data-current-icon><i class="fa fa-sun header-icon"></i></span>
+                <span class="temperature-value" style="font-size: 2rem;" data-current-temp>31</span><span class="temperature-value" style="font-size: 2rem;">&deg;c</span>
+            </div>
+            <div class="header-right">
+                <div class="temperature-container">
+                    <div class="header-title">
+                        <span>HIGH</span>
+                    </div>
+                    <div class="temperature-value">
+                        <span data-current-high>32</span><span>&deg;c</span>
+                    </div>
+                </div>
+                <div class="temperature-container">
+                    <div class="header-title">
+                        <span>FL HIGH</span>
+                    </div>
+                    <div class="temperature-value">
+                        <span data-current-fl-high>27</span><span>&deg;c</span>
+                    </div>
+                </div>
+                <div class="temperature-container">
+                    <div class="header-title">
+                        <span>WIND</span>
+                    </div>
+                    <div class="temperature-value">
+                        <span data-current-wind>32</span><span class="temperature-value-small">Km/h</span>
+                    </div>
+                </div>
+                <div class="temperature-container">
+                    <div class="header-title">
+                        <span>LOW</span>
+                    </div>
+                    <div class="temperature-value">
+                        <span data-current-low>32</span><span>&deg;c</span>
+                    </div>
+                </div>
+                <div class="temperature-container">
+                    <div class="header-title">
+                        <span>FL LOW</span>
+                    </div>
+                    <div class="temperature-value">
+                        <span data-current-fl-low>32</span><span>&deg;c</span>
+                    </div>
+                </div>
+                <div class="temperature-container">
+                    <div class="header-title">
+                        <span>PRECIP</span>
+                    </div>
+                    <div class="temperature-value">
+                        <span data-current-precip>32</span><span class="temperature-value-small">in</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <h2 class="section-titles">Daily Weather:</h2>
+        <section class="day-section" data-day-section>
+            <div class="day-temperature-container">
+                <div class="temperature-container">
+                    <i class="fa fa-sun icon" style="color: yellow;"></i>
+                </div>
+                <div class="temperature-value">
+                    <span>Oct. 9, 2023</span>
+                    <span>Monday</span>
+                    <br>
+                    <span>31<span>&deg;c</span></span>
+                </div>
+            </div>
+            <div class="day-temperature-container">
+                <div class="temperature-container">
+                    <i class="fa fa-sun icon" style="color: yellow;"></i>
+                </div>
+                <div class="temperature-value">
+                    <span>Oct. 10, 2023</span>
+                    <span>Tuesday</span>
+                    <br>
+                    <span>31<span>&deg;c</span></span>
+                </div>
+            </div>
+            <div class="day-temperature-container">
+                <div class="temperature-container">
+                    <i class="fa fa-sun icon" style="color: yellow;"></i>
+                </div>
+                <div class="temperature-value">
+                    <span>Oct. 11, 2023</span>
+                    <span>Wednesday</span>
+                    <br>
+                    <span>31<span>&deg;c</span></span>
+                </div>
+            </div>
+            <div class="day-temperature-container">
+                <div class="temperature-container">
+                    <i class="fa fa-sun icon" style="color: yellow;"></i>
+                </div>
+                <div class="temperature-value">
+                    <span>Oct. 12, 2023</span>
+                    <span>Thursday</span>
+                    <br>
+                    <span>31<span>&deg;c</span></span>
+                </div>
+            </div>
+            <div class="day-temperature-container">
+                <div class="temperature-container">
+                    <i class="fa fa-sun icon" style="color: yellow;"></i>
+                </div>
+                <div class="temperature-value">
+                    <span>Oct. 13, 2023</span>
+                    <span>Friday</span>
+                    <br>
+                    <span>31<span>&deg;c</span></span>
+                </div>
+            </div>
+            <div class="day-temperature-container">
+                <div class="temperature-container">
+                    <i class="fa fa-sun icon" style="color: yellow;"></i>
+                </div>
+                <div class="temperature-value">
+                    <span>Oct. 14, 2023</span>
+                    <span>Saturday</span>
+                    <br>
+                    <span>31<span>&deg;c</span></span>
+                </div>
+            </div>
+            <div class="day-temperature-container">
+                <div class="temperature-container">
+                    <i class="fa fa-sun icon" style="color: yellow;"></i>
+                </div>
+                <div class="temperature-value">
+                    <span>Oct. 15, 2023</span>
+                    <span>Sunday</span>
+                    <br>
+                    <span>31<span>&deg;c</span></span>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-titles">Hourly Weather:</h2>
+        <section class="table-filter">
+            <select name="filter" class="filter" id="filter">
+                <option value=""></option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select>
+            <button class="btn-filter" id="btn-filter" onclick="btnFilter()"><i class="fa fa-filter"></i> Filter</button>
+        </section>
+
+        <table class="hour-section">
+            <tbody data-hour-section>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 9, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Monday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud-rain icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 9, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Monday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-sun icon" style="color: yellow;"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 9, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Monday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud-bolt icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 9, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Monday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud-bolt icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 9, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Monday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 10, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Tuesday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 11, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Wednesday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 12, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Thursday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 13, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Friday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 14, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Saturday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">Oct. 15, 2023</span>
+                            <br>
+                            <span class="header-title" id="header-title">Sunday</span>
+                            <br>
+                            <span>3 PM</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <i class="fa fa-cloud icon"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">FL TEMP</span>
+                            <br>
+                            <span>31<span>&deg;c</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">WIND</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">Km/h</span></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="temperature-value">
+                            <span class="header-title">PRECIP</span>
+                            <br>
+                            <span>31<span class="temperature-value-small">in</span></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <template id="day-card-template">
+            <div class="day-temperature-container">
+                <div class="temperature-container" data-icon>
+                </div>
+                <div class="temperature-value">
+                    <span data-date></span>
+                    <span data-day></span>
+                    <br>
+                    <span data-temp></span><span>&deg;c</span>
+                </div>
+            </div>
+        </template>
+
+        <template id="hour-row-template">
+            <tr>
+                <td>
+                    <div class="temperature-value">
+                        <span class="header-title" data-date></span>
+                        <br>
+                        <span class="header-title" id="header-title" data-day></span>
+                        <br>
+                        <span data-time></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="temperature-value" data-icon>
+                    </div>
+                </td>
+                <td>
+                    <div class="temperature-value">
+                        <span class="header-title">TEMP</span>
+                        <br>
+                        <span data-temp></span><span>&deg;c</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="temperature-value">
+                        <span class="header-title">FL TEMP</span>
+                        <br>
+                        <span data-fl-temp></span><span>&deg;c</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="temperature-value">
+                        <span class="header-title">WIND</span>
+                        <br>
+                        <span data-wind></span><span class="temperature-value-small">Km/h</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="temperature-value">
+                        <span class="header-title">PRECIP</span>
+                        <br>
+                        <span data-precip></span><span class="temperature-value-small">in</span>
+                    </div>
+                </td>
+            </tr>
+        </template>
+
+        <div class="auto-home">
+            <a href="#app-title">
+                <i class="fa fa-circle-arrow-up arrow-up"></i>
+            </a>
+        </div>
+    </div>
+    <script src="scripts/scripts.js"></script>
+</body>
+</html>
