@@ -293,7 +293,7 @@ function showPosition(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
 
-    getWeather(lat, lat, Intl.DateTimeFormat().resolvedOptions().timeZone).then((data) => {
+    getWeather(lat, lon, Intl.DateTimeFormat().resolvedOptions().timeZone).then((data) => {
 
         let parseCurrent = parseCurrentWeather(data);
         let parseDaily = parseDailyWeather(data);
